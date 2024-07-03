@@ -1,5 +1,8 @@
 import os
 from funciones import grabar_datos
+from funcion_opcion_2 import grabar_auto
+from funcion_opcion_3 import imprimir_certificado
+from funcion_salir import salir_programa
 os.system ("cls")
 
 buscar_auto = []
@@ -28,53 +31,18 @@ while True:
         opcion = int(input("Ingresa una opcion: \n"))
     except:
         opcion = 0
-    
     if opcion < 0 or opcion > 4:
-        print("Error, ingrese una opcion valida:")
-
-        
+        print("Error, ingrese una opcion valida:")     
     if opcion == 1:
             print("Graba los datos correspondientes al vehiculo:")
             grabar = grabar_datos()
-            buscar_auto.append(grabar)
-            
-
-    if opcion == 2:
-            print("Buscar datos:")
-
-            if len(buscar_auto) == 0:
-                print("No hay informacion en la lista")
-            
-            else:
-                print(f'{grabar["Tipo"]}\n{grabar["patente"]}\n{grabar["marca"]}\n{grabar["precio"]}\n{grabar["multa"]}\n')    
-    
-    if opcion == 3:
-        for grabar in buscar_auto:
-            print(grabar["patente"])
-            print(grabar)
-            
-        print ("Imprime un certificado para la patente:")
-        print("Tipos de certificados:")
-        print("1.- Emision de contaminantes:")
-        print("2.- Anotaciones vigentes:")
-        print("3.- Multas:")
-        
-        certificado = input("Ingresa tu opcion:\n")
-        if certificado == 1:
-            print("El certificado de emision de contaminantes cuesta", valor_em)   
-        elif certificado == 2:
-            print("El certificado de anotaciones vigentes cuesta:", valor_an)
-            
-        elif certificado == 3:
-            print("El certificado de multas, cuesta:", valor_multas)   
-        else:
-            print("No hay ningun certificado")
-        
-    if opcion == 4:
-        print("Haz salido del programa:")
-    
-    break
-
-
-
-
+            buscar_auto.append(grabar)         
+    elif opcion == 2:
+        print("Busca tus datos ingresados")
+        auto = grabar_auto (buscar_auto, grabar)                  
+    elif opcion == 3:
+        print("Certificados")
+        imprimir =  imprimir_certificado(valor_multas, valor_an, valor_em, buscar_auto)             
+    else:
+        salir = salir_programa()
+        break
